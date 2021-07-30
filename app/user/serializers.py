@@ -18,10 +18,10 @@ class UserSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validate_data):
         """update a user, setting the password  correctly and return it"""
-        password = validate_data.pop('password',None)
-        user = super().update(instance,validate_data)
+        password = validate_data.pop('password', None)
+        user = super().update(instance, validate_data)
 
-        if password: 
+        if password:
             user.set_password(password)
             user.save()
         return user
@@ -51,4 +51,3 @@ class AuthTokenSerializer(serializers.Serializer):
 
         attrs['user'] = user
         return attrs
-
